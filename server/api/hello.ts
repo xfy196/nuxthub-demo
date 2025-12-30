@@ -1,10 +1,12 @@
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
-
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
+import svgCaptcha from "svg-captcha";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 export default defineEventHandler((event) => {
+  const captcha = svgCaptcha.create();
+
   return {
-    hello: join(__dirname, 'hello.txt'),
-  }
-})
+    hello: captcha.text,
+  };
+});
